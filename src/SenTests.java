@@ -1,5 +1,10 @@
+/***
+ * @author Raymond Klarr
+ * 12/16/2023
+ * Class contains methods related to the comparison of input to the prompt. Class may be merged to SentencePractice.java later.
+ */
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SenTests 
@@ -14,8 +19,8 @@ public class SenTests
 	 */
 	public int equalityCheckSen(String entry, String template)
 	{
-		List<String> eList = Arrays.asList(entry.split(" "));
-		List<String> tList = Arrays.asList(template.split(" "));
+		String[] eList = entry.split(" ");
+		String[] tList = template.split(" ");
 		int end = 0;
 		
 		for(String x : eList)
@@ -31,6 +36,7 @@ public class SenTests
 	 * fills arrayList strings with amount strings
 	 * @param amount - num of strings to fill list with.
 	 */
+	@SuppressWarnings("unused")
 	public List<String> fillWithStrings(int amount)
 	{		
 		return SGen.genSen(amount);
@@ -40,9 +46,10 @@ public class SenTests
 	 * fills arrayList strings with amount words
 	 * @param amount - num of words to fill list with.
 	 */
+	@SuppressWarnings("unused")
 	public List<String> fillWithWords(int amount)
 	{
-		List<String> x = new ArrayList<String>();
+		List<String> x = new ArrayList<>();
 		for(int i = 0; i < amount; i++)
 			x.add(SGen.retRanWord());
 		

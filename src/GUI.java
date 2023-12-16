@@ -1,5 +1,10 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+/***
+ * @author Raymond Klarr
+ * 12/16/2023
+ * Class handles gui elements and IO. Class may be more accurately named to 'Menu'
+ */
+
+import java.io.Serial;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,16 +15,10 @@ import javax.swing.JPanel;
 //to be redesigned
 public class GUI extends JFrame 
 {
-	/**
-	 * 
-	 */
+	@Serial
 	private static final long serialVersionUID = 1L;
-	private JLabel label;
-	private JPanel p1;
-	private JPanel p2;
-	private JButton wP, sP;
-	private WordPractice wordsPr;
-	private SentencePractice senPr;
+	private final WordPractice wordsPr;
+	private final SentencePractice senPr = new SentencePractice(this);
 	
 	
 	/**
@@ -33,32 +32,19 @@ public class GUI extends JFrame
 		super.setResizable(false);
 		
 		wordsPr = new WordPractice(this);
-		senPr = new SentencePractice(this);
+
+        JButton wP = new JButton("Word Practice");
+		JButton sP = new JButton("Sentence Practice");
 		
-		wP = new JButton("Word Practice");
-		sP = new JButton("Sentence Practice");
+		wP.addActionListener(e -> startWordP());
 		
-		wP.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				startWordP();
-			}
-		});
-		
-		sP.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				startSenP();
-			}
-		});
-		
-		label = new JLabel();
+		sP.addActionListener(e -> startSenP());
+
+		JLabel label = new JLabel();
 		label.setText("Touch Typing Practice");
-		
-		p1 = new JPanel();
-		p2 = new JPanel();
+
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
 		
 		p1.add(label);
 		
@@ -68,7 +54,7 @@ public class GUI extends JFrame
 		super.add(p1);
 		super.add(p2);
 		
-		BoxLayout x = new BoxLayout(this.getContentPane(), 1);
+		BoxLayout x = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		
 		super.setLayout(x);
 		

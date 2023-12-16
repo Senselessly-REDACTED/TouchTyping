@@ -1,5 +1,10 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+/***
+ * @author Raymond Klarr
+ * 12/16/2023
+ * Class prompts user to type a given word and records accuracy.
+ */
+
+import java.io.Serial;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,20 +16,17 @@ import javax.swing.JTextField;
 //To be removed
 public class WordPractice extends JFrame
 {
+	@Serial
 	private static final long serialVersionUID = 1L;
-	private JButton back;
-	private JPanel p;
-	private JPanel p1;
-	private JPanel p2;
-	private JTextField tF;
-	private JLabel label;
+	private final JTextField tF;
+	private final JLabel label;
 	private String template;
 	private int wordsDone;
 	private int correctWords;
-	private GUI menu;
+	private final GUI menu;
 	private double accuracy;
-	private JLabel accLabel;
-	private JLabel stats;
+	private final JLabel accLabel;
+	private final JLabel stats;
 	
 	/**
 	 * Initializes instance variables, sets up WordPractice GUI
@@ -45,31 +47,19 @@ public class WordPractice extends JFrame
 		wordsDone = 0;
 		correctWords = 0;
 		accuracy = 0.00;
-		
-		p = new JPanel();
-		p1 = new JPanel();
-		p2 = new JPanel();
-		
-		back = new JButton("Back");
-		back.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				back();
-			}
-		});
+
+		JPanel p = new JPanel();
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
+
+		JButton back = new JButton("Back");
+		back.addActionListener(e -> back());
 		
 		template = SGen.retRanWord();
 		
 		tF = new JTextField();
 		tF.setColumns(30);
-		tF.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				nextWord();
-			}
-		});
+		tF.addActionListener(e -> nextWord());
 		
 		label = new JLabel();
 		label.setText(template);
@@ -86,7 +76,7 @@ public class WordPractice extends JFrame
 		
 		
 		
-		super.setLayout(new BoxLayout(this.getContentPane(), 1));
+		super.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		
 		super.add(p);
 		super.add(p1);
@@ -109,14 +99,10 @@ public class WordPractice extends JFrame
 		if(tF.getText().equals(template))
 		{
 			correctWords++;
-			wordsDone++;
-		}
-		else
-		{
-			wordsDone++;
-		}
-		
-		accuracy = ((double)correctWords/wordsDone)*100;
+        }
+        wordsDone++;
+
+        accuracy = ((double)correctWords/wordsDone)*100;
 		
 		tF.setText("");
 		accLabel.setText("Accuracy: " + (int)accuracy + "%");

@@ -1,5 +1,10 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+/***
+ * @author Raymond Klarr
+ * 12/16/2023
+ * Class handles the Sentence type test for the program: prompt a sentence to be typed.
+ */
+
+import java.io.Serial;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,19 +16,13 @@ import javax.swing.JTextField;
 //to be removed
 public class SentencePractice extends JFrame
 {
-	/**
-	 * 
-	 */
+	@Serial
 	private static final long serialVersionUID = 1L;
-	private GUI ret;
-	private JLabel sen;
-	private JTextField tF;
-	private JLabel acc;
-	private JLabel stats;
-	private JPanel p1;
-	private JPanel p2;
-	private JPanel p3;
-	private JButton back;
+	private final GUI ret;
+	private final JLabel sen;
+	private final JTextField tF;
+	private final JLabel acc;
+	private final JLabel stats;
 	private int numWords;
 	private int numCorrectWords;
 	private double accuracy;
@@ -47,8 +46,10 @@ public class SentencePractice extends JFrame
 		ret = safety;
 		
 		sen = new JLabel(); acc = new JLabel(); stats = new JLabel();
-		p1 = new JPanel(); p2 = new JPanel(); p3 = new JPanel();
-		back = new JButton("Back");
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
+		JPanel p3 = new JPanel();
+		JButton back = new JButton("Back");
 		tF = new JTextField();
 		
 		numWords = 0;
@@ -60,22 +61,9 @@ public class SentencePractice extends JFrame
 		acc.setText("Type the above sentence then press enter.");
 		stats.setText("Words Correctly Spelled: " + numCorrectWords + " Words Entered: " + numWords);
 		
-		back.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				back();
-			}
-		});
+		back.addActionListener(e -> back());
 		
-		tF.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				nextWord();
-				
-			}
-		});
+		tF.addActionListener(e -> nextWord());
 		
 		tF.setColumns(40);
 		
@@ -84,7 +72,7 @@ public class SentencePractice extends JFrame
 		p2.add(tF); p2.add(stats);
 		p3.add(acc);
 		
-		super.setLayout(new BoxLayout(this.getContentPane(), 1));
+		super.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		
 		super.add(p1);
 		super.add(p2);

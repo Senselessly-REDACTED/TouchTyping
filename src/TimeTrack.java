@@ -1,4 +1,11 @@
+/***
+ * @author Raymond Klarr
+ * 12/16/2023
+ * Class keeps track of time between two points on request.
+ */
+
 //To Be Implemented
+@SuppressWarnings("unused")
 public class TimeTrack
 {
 	private long tStart;
